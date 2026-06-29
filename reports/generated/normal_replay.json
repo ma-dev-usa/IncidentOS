@@ -1,0 +1,154 @@
+{
+  "summary": {
+    "total_requests": 5,
+    "failed_requests": 0,
+    "success_rate": 1.0
+  },
+  "results": [
+    {
+      "request_id": 1,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 200,
+      "ok": true,
+      "latency_ms": 98.88,
+      "response_json": {
+        "service": "gateway",
+        "status": "created",
+        "result": {
+          "service": "orders",
+          "status": "created",
+          "order_id": "ord_123",
+          "inventory": {
+            "service": "inventory",
+            "status": "reserved",
+            "reservation_id": "res_123"
+          },
+          "payment": {
+            "service": "payments",
+            "status": "charged",
+            "payment_id": "pay_123"
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 2,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 200,
+      "ok": true,
+      "latency_ms": 19.25,
+      "response_json": {
+        "service": "gateway",
+        "status": "created",
+        "result": {
+          "service": "orders",
+          "status": "created",
+          "order_id": "ord_123",
+          "inventory": {
+            "service": "inventory",
+            "status": "reserved",
+            "reservation_id": "res_123"
+          },
+          "payment": {
+            "service": "payments",
+            "status": "charged",
+            "payment_id": "pay_123"
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 3,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 200,
+      "ok": true,
+      "latency_ms": 18.38,
+      "response_json": {
+        "service": "gateway",
+        "status": "created",
+        "result": {
+          "service": "orders",
+          "status": "created",
+          "order_id": "ord_123",
+          "inventory": {
+            "service": "inventory",
+            "status": "reserved",
+            "reservation_id": "res_123"
+          },
+          "payment": {
+            "service": "payments",
+            "status": "charged",
+            "payment_id": "pay_123"
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 4,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 200,
+      "ok": true,
+      "latency_ms": 17.19,
+      "response_json": {
+        "service": "gateway",
+        "status": "created",
+        "result": {
+          "service": "orders",
+          "status": "created",
+          "order_id": "ord_123",
+          "inventory": {
+            "service": "inventory",
+            "status": "reserved",
+            "reservation_id": "res_123"
+          },
+          "payment": {
+            "service": "payments",
+            "status": "charged",
+            "payment_id": "pay_123"
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 5,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 200,
+      "ok": true,
+      "latency_ms": 16.16,
+      "response_json": {
+        "service": "gateway",
+        "status": "created",
+        "result": {
+          "service": "orders",
+          "status": "created",
+          "order_id": "ord_123",
+          "inventory": {
+            "service": "inventory",
+            "status": "reserved",
+            "reservation_id": "res_123"
+          },
+          "payment": {
+            "service": "payments",
+            "status": "charged",
+            "payment_id": "pay_123"
+          }
+        }
+      },
+      "error": null
+    }
+  ]
+}

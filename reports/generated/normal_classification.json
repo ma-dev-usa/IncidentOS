@@ -1,0 +1,16 @@
+{
+  "scenario": "normal",
+  "root_service": "none",
+  "root_cause": "No incident detected",
+  "severity": "LOW",
+  "confidence": 0.95,
+  "affected_services": [],
+  "evidence": [
+    "5 requests replayed successfully",
+    "Success rate was 1.0"
+  ],
+  "remediation": [
+    "No remediation required.",
+    "Continue monitoring checkout path health."
+  ]
+}

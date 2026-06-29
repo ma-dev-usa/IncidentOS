@@ -1,0 +1,22 @@
+{
+  "scenario": "inventory-timeout",
+  "root_service": "inventory",
+  "root_cause": "Inventory dependency exceeded timeout budget",
+  "severity": "HIGH",
+  "confidence": 0.88,
+  "affected_services": [
+    "gateway",
+    "orders",
+    "inventory"
+  ],
+  "evidence": [
+    "Maximum failed-request latency was 2088.79 ms.",
+    "Checkout path returned a timeout or upstream timeout failure.",
+    "Failed statuses observed: [504, 504, 504, 504, 504]"
+  ],
+  "remediation": [
+    "Inspect inventory latency, database queries, and saturation metrics.",
+    "Add timeout budget alerts for the checkout dependency chain.",
+    "Consider circuit breaking or fallback behavior for inventory failures."
+  ]
+}

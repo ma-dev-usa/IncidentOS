@@ -1,0 +1,22 @@
+{
+  "scenario": "schema-drift",
+  "root_service": "inventory",
+  "root_cause": "Inventory response schema changed and omitted reservation_id",
+  "severity": "HIGH",
+  "confidence": 0.92,
+  "affected_services": [
+    "gateway",
+    "orders",
+    "inventory"
+  ],
+  "evidence": [
+    "Orders service detected missing reservation_id from inventory response.",
+    "Gateway returned an upstream dependency failure.",
+    "Failed statuses observed: [502, 502, 502, 502, 502]"
+  ],
+  "remediation": [
+    "Restore reservation_id field or update the orders service contract.",
+    "Add OpenAPI contract checks for the inventory reserve endpoint.",
+    "Block release until dependent service schema is compatible."
+  ]
+}

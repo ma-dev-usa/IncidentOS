@@ -1,0 +1,154 @@
+{
+  "summary": {
+    "total_requests": 5,
+    "failed_requests": 5,
+    "success_rate": 0.0
+  },
+  "results": [
+    {
+      "request_id": 1,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 502,
+      "ok": false,
+      "latency_ms": 90.56,
+      "response_json": {
+        "detail": {
+          "service": "gateway",
+          "upstream_service": "orders",
+          "upstream_status": 502,
+          "upstream_response": {
+            "detail": {
+              "service": "orders",
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 2,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 502,
+      "ok": false,
+      "latency_ms": 17.77,
+      "response_json": {
+        "detail": {
+          "service": "gateway",
+          "upstream_service": "orders",
+          "upstream_status": 502,
+          "upstream_response": {
+            "detail": {
+              "service": "orders",
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 3,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 502,
+      "ok": false,
+      "latency_ms": 17.15,
+      "response_json": {
+        "detail": {
+          "service": "gateway",
+          "upstream_service": "orders",
+          "upstream_status": 502,
+          "upstream_response": {
+            "detail": {
+              "service": "orders",
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 4,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 502,
+      "ok": false,
+      "latency_ms": 16.14,
+      "response_json": {
+        "detail": {
+          "service": "gateway",
+          "upstream_service": "orders",
+          "upstream_status": 502,
+          "upstream_response": {
+            "detail": {
+              "service": "orders",
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "request_id": 5,
+      "method": "POST",
+      "url": "http://localhost:8000/checkout",
+      "expected_status": 200,
+      "actual_status": 502,
+      "ok": false,
+      "latency_ms": 15.9,
+      "response_json": {
+        "detail": {
+          "service": "gateway",
+          "upstream_service": "orders",
+          "upstream_status": 502,
+          "upstream_response": {
+            "detail": {
+              "service": "orders",
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
+            }
+          }
+        }
+      },
+      "error": null
+    }
+  ]
+}

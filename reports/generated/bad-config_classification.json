@@ -1,0 +1,22 @@
+{
+  "scenario": "payment-500",
+  "root_service": "payments",
+  "root_cause": "Payments dependency returned HTTP 500 during checkout",
+  "severity": "HIGH",
+  "confidence": 0.9,
+  "affected_services": [
+    "gateway",
+    "orders",
+    "payments"
+  ],
+  "evidence": [
+    "Orders service reported failed_dependency=payments.",
+    "Payments service returned a server-side failure.",
+    "Failed statuses observed: [500, 500, 500, 500, 500]"
+  ],
+  "remediation": [
+    "Inspect payments service logs for processor errors.",
+    "Verify payment provider credentials and recent deploys.",
+    "Block release until payment dependency is stable."
+  ]
+}

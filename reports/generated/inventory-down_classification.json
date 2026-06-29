@@ -1,0 +1,22 @@
+{
+  "scenario": "inventory-down",
+  "root_service": "inventory",
+  "root_cause": "Inventory dependency unavailable during checkout",
+  "severity": "HIGH",
+  "confidence": 0.91,
+  "affected_services": [
+    "gateway",
+    "orders",
+    "inventory"
+  ],
+  "evidence": [
+    "Orders service reported failed_dependency=inventory.",
+    "Inventory service returned unavailable status.",
+    "Failed statuses observed: [502, 502, 502, 502, 502]"
+  ],
+  "remediation": [
+    "Verify inventory service health and recent deployments.",
+    "Check network connectivity between orders and inventory.",
+    "Block release until inventory dependency recovers."
+  ]
+}
