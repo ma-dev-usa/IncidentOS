@@ -1,0 +1,9 @@
+[project]
+name = "incidentos"
+version = "0.1.0"
+description = "Microservice incident replay and root-cause analysis platform"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
