@@ -32,11 +32,12 @@ def run_replay(
         for index, request in enumerate(traffic, start=1):
             method = request.get("method", "POST").upper()
             expected_status = int(request.get("expected_status", 200))
+            body = request.get("json")
 
             start = time.perf_counter()
 
             try:
-                response = client.request(method, url)
+                response = client.request(method, url, json=body)
                 latency_ms = round((time.perf_counter() - start) * 1000, 2)
 
                 try:
@@ -57,6 +58,7 @@ def run_replay(
 
             except Exception as exc:
                 latency_ms = round((time.perf_counter() - start) * 1000, 2)
+
                 result = ReplayResult(
                     request_id=index,
                     method=method,
@@ -72,6 +74,7 @@ def run_replay(
             results.append(result.to_dict())
 
     failed = [item for item in results if not item["ok"]]
+
     payload = {
         "summary": {
             "total_requests": len(results),

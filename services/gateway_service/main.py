@@ -1,4 +1,5 @@
 import os
+
 import httpx
 from fastapi import FastAPI, HTTPException
 
@@ -37,6 +38,7 @@ async def checkout():
 
     except HTTPException:
         raise
+
     except Exception as exc:
         raise HTTPException(
             status_code=504,

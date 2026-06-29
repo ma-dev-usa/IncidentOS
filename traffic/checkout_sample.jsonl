@@ -1,5 +1,5 @@
-{"method": "POST", "path": "/checkout", "expected_status": 200}
-{"method": "POST", "path": "/checkout", "expected_status": 200}
-{"method": "POST", "path": "/checkout", "expected_status": 200}
-{"method": "POST", "path": "/checkout", "expected_status": 200}
-{"method": "POST", "path": "/checkout", "expected_status": 200}
+{"method":"POST","expected_status":200,"json":{"user_id":"u_001","sku":"sku_001","quantity":1}}
+{"method":"POST","expected_status":200,"json":{"user_id":"u_002","sku":"sku_002","quantity":2}}
+{"method":"POST","expected_status":200,"json":{"user_id":"u_003","sku":"sku_003","quantity":1}}
+{"method":"POST","expected_status":200,"json":{"user_id":"u_004","sku":"sku_004","quantity":3}}
+{"method":"POST","expected_status":200,"json":{"user_id":"u_005","sku":"sku_005","quantity":1}}

@@ -1,96 +1,86 @@
 import argparse
 import json
 import sys
-from pathlib import Path
 
-from rich.console import Console
-from rich.table import Table
-
-from incidentos.classifier import classify_replay
+from incidentos.classifier import classify_replay, load_classification, save_classification
 from incidentos.replay import load_replay, run_replay
 from incidentos.report import generate_markdown_report
 from incidentos.risk import score_release_risk, should_fail
 
-console = Console()
-
-
-def cmd_replay(args: argparse.Namespace) -> None:
-    payload = run_replay(args.url, args.traffic, args.out)
-    summary = payload["summary"]
-
-    table = Table(title="IncidentOS Replay Summary")
-    table.add_column("Metric")
-    table.add_column("Value")
-
-    table.add_row("Total requests", str(summary["total_requests"]))
-    table.add_row("Failed requests", str(summary["failed_requests"]))
-    table.add_row("Success rate", str(summary["success_rate"]))
-    table.add_row("Output", args.out)
-
-    console.print(table)
-
-
-def cmd_classify(args: argparse.Namespace) -> None:
-    payload = load_replay(args.input)
-    classification = classify_replay(payload)
-
-    console.print(json.dumps(classification.to_dict(), indent=2))
-
-
-def cmd_report(args: argparse.Namespace) -> None:
-    payload = load_replay(args.input)
-    classification = classify_replay(payload)
-    output = generate_markdown_report(classification, payload, args.out)
-
-    console.print(f"Generated incident report: {output}")
-
-
-def cmd_risk(args: argparse.Namespace) -> None:
-    payload = load_replay(args.input)
-    classification = classify_replay(payload)
-    risk = score_release_risk(classification)
-
-    console.print(json.dumps(risk, indent=2))
-
-    if args.fail_on and should_fail(risk["risk"], args.fail_on):
-        console.print(f"Release gate failed: risk {risk['risk']} >= {args.fail_on}")
-        sys.exit(1)
-
-
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="incidentos")
-    subparsers = parser.add_subparsers(dest="command", required=True)
-
-    replay = subparsers.add_parser("replay")
-    replay.add_argument("--url", required=True)
-    replay.add_argument("--traffic", required=True)
-    replay.add_argument("--out", default="reports/generated/latest_replay.json")
-    replay.set_defaults(func=cmd_replay)
-
-    classify = subparsers.add_parser("classify")
-    classify.add_argument("--input", default="reports/generated/latest_replay.json")
-    classify.set_defaults(func=cmd_classify)
-
-    report = subparsers.add_parser("report")
-    report.add_argument("--input", default="reports/generated/latest_replay.json")
-    report.add_argument("--out", default="reports/generated/incident_report.md")
-    report.set_defaults(func=cmd_report)
-
-    risk = subparsers.add_parser("risk")
-    risk.add_argument("--input", default="reports/generated/latest_replay.json")
-    risk.add_argument("--fail-on", choices=["LOW", "MEDIUM", "HIGH"])
-    risk.set_defaults(func=cmd_risk)
-
-    return parser
-
 
 def main() -> None:
-    parser = build_parser()
+    parser = argparse.ArgumentParser(prog="incidentos")
+    subparsers = parser.add_subparsers(dest="command")
+
+    replay_parser = subparsers.add_parser("replay")
+    replay_parser.add_argument("--url", required=True)
+    replay_parser.add_argument("--traffic", required=True)
+    replay_parser.add_argument("--output", default="reports/generated/latest_replay.json")
+
+    classify_parser = subparsers.add_parser("classify")
+    classify_parser.add_argument("--replay", default="reports/generated/latest_replay.json")
+    classify_parser.add_argument("--output", default="reports/generated/latest_classification.json")
+
+    report_parser = subparsers.add_parser("report")
+    report_parser.add_argument("--replay", default="reports/generated/latest_replay.json")
+    report_parser.add_argument("--classification", default="reports/generated/latest_classification.json")
+    report_parser.add_argument("--output", default="reports/generated/incident_report.md")
+
+    risk_parser = subparsers.add_parser("risk")
+    risk_parser.add_argument("--classification", default="reports/generated/latest_classification.json")
+    risk_parser.add_argument("--fail-on", choices=["LOW", "MEDIUM", "HIGH"], default=None)
+
+    flow_parser = subparsers.add_parser("flow")
+    flow_parser.add_argument("--url", required=True)
+    flow_parser.add_argument("--traffic", required=True)
+
     args = parser.parse_args()
 
-    Path("reports/generated").mkdir(parents=True, exist_ok=True)
+    if args.command == "replay":
+        payload = run_replay(args.url, args.traffic, args.output)
+        print(json.dumps(payload["summary"], indent=2))
+        print(f"Replay written to {args.output}")
+        return
 
-    args.func(args)
+    if args.command == "classify":
+        replay_payload = load_replay(args.replay)
+        classification = classify_replay(replay_payload)
+        output = save_classification(classification, args.output)
+        print(json.dumps(classification.to_dict(), indent=2))
+        print(f"Classification written to {output}")
+        return
+
+    if args.command == "report":
+        replay_payload = load_replay(args.replay)
+        classification = load_classification(args.classification)
+        output = generate_markdown_report(classification, replay_payload, args.output)
+        print(f"Incident report written to {output}")
+        return
+
+    if args.command == "risk":
+        classification = load_classification(args.classification)
+        risk = score_release_risk(classification)
+        print(json.dumps(risk, indent=2))
+
+        if args.fail_on and should_fail(risk["risk"], args.fail_on):
+            sys.exit(1)
+
+        return
+
+    if args.command == "flow":
+        replay_payload = run_replay(args.url, args.traffic)
+        classification = classify_replay(replay_payload)
+        save_classification(classification)
+        report_path = generate_markdown_report(classification, replay_payload)
+        risk = score_release_risk(classification)
+
+        print(json.dumps(replay_payload["summary"], indent=2))
+        print(json.dumps(classification.to_dict(), indent=2))
+        print(json.dumps(risk, indent=2))
+        print(f"Incident report written to {report_path}")
+        return
+
+    parser.print_help()
 
 
 if __name__ == "__main__":

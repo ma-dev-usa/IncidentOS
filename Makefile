@@ -1,4 +1,4 @@
-.PHONY: up down logs test replay classify report risk risk-block scenario
+.PHONY: up down logs test replay classify report risk risk-block flow scenario clean
 
 PYTHON=.venv/bin/python
 PYTEST=.venv/bin/pytest
@@ -13,7 +13,7 @@ logs:
 	docker compose logs -f
 
 test:
-	$(PYTEST)
+	$(PYTEST) -q
 
 scenario:
 	docker compose down
@@ -33,3 +33,9 @@ risk:
 
 risk-block:
 	$(PYTHON) -m incidentos.cli risk --fail-on HIGH
+
+flow:
+	$(PYTHON) -m incidentos.cli flow --url http://localhost:8000/checkout --traffic traffic/checkout_sample.jsonl
+
+clean:
+	rm -rf reports/generated .pytest_cache

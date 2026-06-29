@@ -1,4 +1,5 @@
 import os
+
 import httpx
 from fastapi import FastAPI, HTTPException
 
@@ -22,61 +23,15 @@ async def create_order():
             status_code=500,
             detail={
                 "service": "orders",
-                "error": "bad configuration detected",
-                "missing_config": "INVENTORY_URL",
-                "remediation": "verify service discovery and required environment variables",
+                "error": "missing required configuration value",
+                "missing_config": "PAYMENTS_URL",
             },
         )
 
     try:
         async with httpx.AsyncClient(timeout=2.0) as client:
-            if scenario == "retry-storm":
-                attempts = []
-                for attempt in range(1, 4):
-                    try:
-                        response = await client.post(f"{INVENTORY_URL}/reserve")
-                        attempts.append({"attempt": attempt, "status_code": response.status_code})
-                    except Exception as exc:
-                        attempts.append({"attempt": attempt, "error": str(exc)})
-
-                raise HTTPException(
-                    status_code=429,
-                    detail={
-                        "service": "orders",
-                        "failed_dependency": "inventory",
-                        "error": "retry storm detected",
-                        "attempts": attempts,
-                        "remediation": "apply retry budgets, backoff, and circuit breaking",
-                    },
-                )
-
-            try:
-                inventory = await client.post(f"{INVENTORY_URL}/reserve")
-            except httpx.TimeoutException:
-                raise HTTPException(
-                    status_code=504,
-                    detail={
-                        "service": "orders",
-                        "failed_dependency": "inventory",
-                        "error": "inventory dependency timeout",
-                        "timeout_seconds": 2.0,
-                        "remediation": "check inventory service latency and dependency timeout thresholds",
-                    },
-                )
-
-            try:
-                payment = await client.post(f"{PAYMENTS_URL}/charge")
-            except httpx.TimeoutException:
-                raise HTTPException(
-                    status_code=504,
-                    detail={
-                        "service": "orders",
-                        "failed_dependency": "payments",
-                        "error": "payment dependency timeout",
-                        "timeout_seconds": 2.0,
-                        "remediation": "check payment service latency and timeout thresholds",
-                    },
-                )
+            inventory = await client.post(f"{INVENTORY_URL}/reserve")
+            payment = await client.post(f"{PAYMENTS_URL}/charge")
 
         if inventory.status_code >= 400:
             raise HTTPException(
@@ -124,6 +79,7 @@ async def create_order():
 
     except HTTPException:
         raise
+
     except Exception as exc:
         raise HTTPException(
             status_code=504,

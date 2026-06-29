@@ -36,41 +36,23 @@ def generate_markdown_report(
         "",
     ]
 
-    for service in classification.affected_services:
-        lines.append(f"- `{service}`")
-
-    if not classification.affected_services:
+    if classification.affected_services:
+        for service in classification.affected_services:
+            lines.append(f"- `{service}`")
+    else:
         lines.append("- None")
 
-    lines.extend(
-        [
-            "",
-            "## Evidence",
-            "",
-        ]
-    )
+    lines.extend(["", "## Evidence", ""])
 
     for item in classification.evidence:
         lines.append(f"- {item}")
 
-    lines.extend(
-        [
-            "",
-            "## Recommended Remediation",
-            "",
-        ]
-    )
+    lines.extend(["", "## Recommended Remediation", ""])
 
     for item in classification.remediation:
         lines.append(f"- {item}")
 
-    lines.extend(
-        [
-            "",
-            "## Release Gate Reasons",
-            "",
-        ]
-    )
+    lines.extend(["", "## Release Gate Reasons", ""])
 
     for item in risk["reasons"]:
         lines.append(f"- {item}")

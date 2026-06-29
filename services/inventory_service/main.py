@@ -1,12 +1,15 @@
 import os
 import time
+
 from fastapi import FastAPI, HTTPException
 
 app = FastAPI(title="IncidentOS Inventory Service")
 
+
 @app.get("/health")
 def health():
     return {"service": "inventory", "status": "ok"}
+
 
 @app.post("/reserve")
 def reserve_inventory():
@@ -16,13 +19,22 @@ def reserve_inventory():
         time.sleep(5)
 
     if scenario == "inventory-down":
-        raise HTTPException(status_code=503, detail="inventory unavailable")
+        raise HTTPException(
+            status_code=503,
+            detail={
+                "service": "inventory",
+                "error": "inventory unavailable",
+            },
+        )
 
     if scenario == "schema-drift":
-        return {"service": "inventory", "reserved": True}
+        return {
+            "service": "inventory",
+            "reserved": True,
+        }
 
     return {
         "service": "inventory",
         "status": "reserved",
-        "reservation_id": "res_123"
+        "reservation_id": "res_123",
     }

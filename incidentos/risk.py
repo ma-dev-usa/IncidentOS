@@ -2,7 +2,6 @@ from typing import Any
 
 from incidentos.models import IncidentClassification
 
-
 RISK_ORDER = {
     "LOW": 1,
     "MEDIUM": 2,
