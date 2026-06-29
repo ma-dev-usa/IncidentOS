@@ -1,22 +1,41 @@
-# Sample Incident Report
+# IncidentOS Incident Report
 
 ## Summary
 
-Checkout requests failed because the inventory service exceeded the configured latency threshold and caused downstream timeout behavior.
+- **Scenario:** `schema-drift`
+- **Root service:** `inventory`
+- **Root cause:** Inventory response schema changed unexpectedly
+- **Severity:** `HIGH`
+- **Confidence:** `94%`
+- **Release risk:** `HIGH`
+- **Block release:** `True`
 
-## Severity
+## Replay Results
 
-High
+- **Total requests:** 5
+- **Failed requests:** 5
+- **Success rate:** 0.0
 
-## Likely Root Cause
+## Affected Services
 
-inventory-service latency breach
+- `gateway`
+- `orders`
+- `inventory`
 
-## Confidence
+## Evidence
 
-91%
+- 5/5 replayed requests failed.
+- Observed HTTP statuses: [502].
+- Orders service detected missing inventory reservation_id.
+- Checkout failed because downstream response shape no longer matched the expected contract.
 
-## Affected Path
+## Recommended Remediation
 
-```text
-gateway-service -> orders-service -> inventory-service
+- Block release until inventory response contract is restored or orders service is updated.
+- Add contract tests for required inventory response fields.
+
+## Release Gate Reasons
+
+- Root cause: Inventory response schema changed unexpectedly
+- Root service: inventory
+- Scenario: schema-drift

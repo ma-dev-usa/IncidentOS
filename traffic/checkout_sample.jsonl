@@ -1,3 +1,5 @@
 {"method": "POST", "path": "/checkout", "expected_status": 200}
 {"method": "POST", "path": "/checkout", "expected_status": 200}
 {"method": "POST", "path": "/checkout", "expected_status": 200}
+{"method": "POST", "path": "/checkout", "expected_status": 200}
+{"method": "POST", "path": "/checkout", "expected_status": 200}
