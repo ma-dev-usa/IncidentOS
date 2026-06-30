@@ -34,7 +34,7 @@ orders-service
    |          |
    v          v
 inventory   payments
-
+```
 ## Demo: Schema Drift Incident
 
 IncidentOS simulates a schema drift incident where the inventory service omits the expected `reservation_id` field. The orders service detects the incompatible response contract, the gateway returns upstream dependency failures, and IncidentOS classifies the root cause.
