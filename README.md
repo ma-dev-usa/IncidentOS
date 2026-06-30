@@ -10,6 +10,15 @@ Production incidents often require engineers to inspect service logs, failed req
 
 The project demonstrates backend engineering, microservice debugging, API reliability, test automation, and production-support thinking.
 
+## Features
+
+Incident lifecycle
+Timeline
+On-call schedules
+Escalation policies
+Metrics dashboard
+Audit logging
+
 ## Architecture
 
 ```text
