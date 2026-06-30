@@ -34,3 +34,27 @@ orders-service
    |          |
    v          v
 inventory   payments
+
+## Demo: Schema Drift Incident
+
+IncidentOS simulates a schema drift incident where the inventory service omits the expected `reservation_id` field. The orders service detects the incompatible response contract, the gateway returns upstream dependency failures, and IncidentOS classifies the root cause.
+
+### Tests Passing
+
+![Tests passing](docs/screenshots/tests-passing.png)
+
+### Dockerized Microservices
+
+![Docker services running](docs/screenshots/docker-services-running.png)
+
+### Traffic Replay
+
+![Schema drift replay](docs/screenshots/schema-drift-replay.png)
+
+### Root-Cause Classification
+
+![Schema drift classification](docs/screenshots/schema-drift-classification.png)
+
+### Release-Risk Gate
+
+![Release risk gate](docs/screenshots/release-risk-gate.png)
