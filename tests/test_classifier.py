@@ -42,7 +42,7 @@ def test_classifies_schema_drift_as_high_risk():
 
     classification = classify_replay(payload)
 
-    assert classification.scenario == "schema-drift"
+    assert classification.scenario == "schema_drift"
     assert classification.root_service == "inventory"
     assert classification.severity == "HIGH"
 
@@ -74,6 +74,6 @@ def test_classifies_payment_failure_as_high_risk():
 
     classification = classify_replay(payload)
 
-    assert classification.scenario == "payment-500"
+    assert classification.scenario == "payment_failure"
     assert classification.root_service == "payments"
     assert classification.severity == "HIGH"
