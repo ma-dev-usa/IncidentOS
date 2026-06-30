@@ -1,6 +1,6 @@
-# IncidentOS v1.0.0
+# FaultScene v1.0.0
 
-IncidentOS is a Dockerized microservice incident replay and root-cause analysis platform for simulating production-style checkout failures, replaying synthetic traffic, classifying likely root cause, and generating release-risk reports.
+FaultScene is a Dockerized microservice incident replay and root-cause analysis platform for simulating production-style checkout failures, replaying synthetic traffic, classifying likely root cause, and generating release-risk reports.
 
 ## Highlights
 

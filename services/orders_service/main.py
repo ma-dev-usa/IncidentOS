@@ -3,7 +3,7 @@ import os
 import httpx
 from fastapi import FastAPI, HTTPException
 
-app = FastAPI(title="IncidentOS Orders Service")
+app = FastAPI(title="FaultScene Orders Service")
 
 INVENTORY_URL = os.getenv("INVENTORY_URL", "http://localhost:8002")
 PAYMENTS_URL = os.getenv("PAYMENTS_URL", "http://localhost:8003")

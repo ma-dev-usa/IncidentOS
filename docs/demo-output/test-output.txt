@@ -1,7 +1,7 @@
 .venv/bin/pytest
 ============================= test session starts ==============================
 platform darwin -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0
-rootdir: /Users/home/Projects/incidentos
+rootdir: /Users/home/Projects/faultscene
 configfile: pyproject.toml
 testpaths: tests
 plugins: anyio-4.14.1

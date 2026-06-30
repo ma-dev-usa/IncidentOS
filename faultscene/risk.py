@@ -1,6 +1,6 @@
 from typing import Any
 
-from incidentos.models import IncidentClassification
+from faultscene.models import IncidentClassification
 
 RISK_ORDER = {
     "LOW": 1,

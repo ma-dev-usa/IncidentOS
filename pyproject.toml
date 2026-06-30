@@ -1,5 +1,5 @@
 [project]
-name = "incidentos"
+name = "faultscene"
 version = "0.1.0"
 description = "Microservice incident replay and root-cause analysis platform"
 requires-python = ">=3.11"

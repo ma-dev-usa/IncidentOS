@@ -3,7 +3,7 @@ import os
 import httpx
 from fastapi import FastAPI, HTTPException
 
-app = FastAPI(title="IncidentOS Gateway Service")
+app = FastAPI(title="FaultScene Gateway Service")
 
 ORDERS_URL = os.getenv("ORDERS_URL", "http://localhost:8001")
 

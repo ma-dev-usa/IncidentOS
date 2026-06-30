@@ -1,5 +1,5 @@
-from incidentos.models import IncidentClassification
-from incidentos.risk import score_release_risk, should_fail
+from faultscene.models import IncidentClassification
+from faultscene.risk import score_release_risk, should_fail
 
 
 def test_high_severity_blocks_release():

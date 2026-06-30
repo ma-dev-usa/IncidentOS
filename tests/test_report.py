@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from incidentos.models import IncidentClassification
-from incidentos.report import generate_markdown_report
+from faultscene.models import IncidentClassification
+from faultscene.report import generate_markdown_report
 
 
 def test_generates_markdown_report(tmp_path):
@@ -29,6 +29,6 @@ def test_generates_markdown_report(tmp_path):
 
     contents = Path(result).read_text(encoding="utf-8")
 
-    assert "# IncidentOS Incident Report" in contents
+    assert "# FaultScene Incident Report" in contents
     assert "inventory-down" in contents
     assert "Release risk" in contents

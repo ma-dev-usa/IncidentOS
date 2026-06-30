@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from incidentos.models import IncidentClassification
+from faultscene.models import IncidentClassification
 
 
 def _flatten_text(value: Any) -> str:

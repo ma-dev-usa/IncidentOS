@@ -1,4 +1,4 @@
-.venv/bin/python -m incidentos.cli risk
+.venv/bin/python -m faultscene.cli risk
 {
   "risk": "HIGH",
   "should_block_release": true,

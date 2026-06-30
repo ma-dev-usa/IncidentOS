@@ -2,7 +2,7 @@ import os
 
 from fastapi import FastAPI, HTTPException
 
-app = FastAPI(title="IncidentOS Payments Service")
+app = FastAPI(title="FaultScene Payments Service")
 
 
 @app.get("/health")

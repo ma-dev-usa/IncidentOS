@@ -2,14 +2,14 @@ import argparse
 import json
 import sys
 
-from incidentos.classifier import classify_replay, load_classification, save_classification
-from incidentos.replay import load_replay, run_replay
-from incidentos.report import generate_markdown_report
-from incidentos.risk import score_release_risk, should_fail
+from faultscene.classifier import classify_replay, load_classification, save_classification
+from faultscene.replay import load_replay, run_replay
+from faultscene.report import generate_markdown_report
+from faultscene.risk import score_release_risk, should_fail
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="incidentos")
+    parser = argparse.ArgumentParser(prog="faultscene")
     subparsers = parser.add_subparsers(dest="command")
 
     replay_parser = subparsers.add_parser("replay")

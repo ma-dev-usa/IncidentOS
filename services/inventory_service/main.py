@@ -3,7 +3,7 @@ import time
 
 from fastapi import FastAPI, HTTPException
 
-app = FastAPI(title="IncidentOS Inventory Service")
+app = FastAPI(title="FaultScene Inventory Service")
 
 
 @app.get("/health")

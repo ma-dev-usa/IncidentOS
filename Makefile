@@ -22,19 +22,19 @@ scenario:
 	SCENARIO=$(SCENARIO) docker compose up --build -d
 
 replay:
-	$(PYTHON) -m incidentos.cli replay --url "$(CHECKOUT_URL)" --traffic "$(TRAFFIC_FILE)"
+	$(PYTHON) -m faultscene.cli replay --url "$(CHECKOUT_URL)" --traffic "$(TRAFFIC_FILE)"
 
 classify:
-	$(PYTHON) -m incidentos.cli classify
+	$(PYTHON) -m faultscene.cli classify
 
 report:
-	$(PYTHON) -m incidentos.cli report
+	$(PYTHON) -m faultscene.cli report
 
 risk:
-	$(PYTHON) -m incidentos.cli risk
+	$(PYTHON) -m faultscene.cli risk
 
 risk-block:
-	$(PYTHON) -m incidentos.cli risk --block
+	$(PYTHON) -m faultscene.cli risk --block
 
 flow: replay classify report risk
 

@@ -1,4 +1,4 @@
-from incidentos.classifier import classify_replay
+from faultscene.classifier import classify_replay
 
 
 def test_classifies_normal_replay_as_low_risk():

@@ -1,12 +1,12 @@
-# IncidentOS
+# FaultScene
 
-![Tests](https://github.com/ma-dev-usa/IncidentOS/actions/workflows/tests.yml/badge.svg)
+![Tests](https://github.com/ma-dev-usa/FaultScene/actions/workflows/tests.yml/badge.svg)
 
-IncidentOS is a Dockerized microservice incident replay and root-cause analysis platform. It simulates production-style checkout failures across gateway, orders, inventory, and payments services, replays synthetic traffic, classifies likely root cause, and generates release-risk reports.
+FaultScene is a Dockerized microservice incident replay and root-cause analysis platform. It simulates production-style checkout failures across gateway, orders, inventory, and payments services, replays synthetic traffic, classifies likely root cause, and generates release-risk reports.
 
 ## Why This Exists
 
-Production incidents often require engineers to inspect service logs, failed requests, dependency behavior, and recent changes before identifying root cause. IncidentOS recreates that workflow in a local, repeatable environment.
+Production incidents often require engineers to inspect service logs, failed requests, dependency behavior, and recent changes before identifying root cause. FaultScene recreates that workflow in a local, repeatable environment.
 
 This project demonstrates backend engineering, microservice debugging, API reliability, test automation, and production-support thinking.
 
@@ -37,7 +37,7 @@ inventory   payments
 ```
 ## Demo: Schema Drift Incident
 
-IncidentOS simulates a schema drift incident where the inventory service omits the expected `reservation_id` field. The orders service detects the incompatible response contract, the gateway returns upstream dependency failures, and IncidentOS classifies the root cause.
+FaultScene simulates a schema drift incident where the inventory service omits the expected `reservation_id` field. The orders service detects the incompatible response contract, the gateway returns upstream dependency failures, and FaultScene classifies the root cause.
 
 ### Tests Passing
 

@@ -5,7 +5,7 @@ from typing import Any
 
 import httpx
 
-from incidentos.models import ReplayResult
+from faultscene.models import ReplayResult
 
 
 def read_jsonl(path: str) -> list[dict[str, Any]]:

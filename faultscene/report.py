@@ -1,8 +1,8 @@
 from pathlib import Path
 from typing import Any
 
-from incidentos.models import IncidentClassification
-from incidentos.risk import score_release_risk
+from faultscene.models import IncidentClassification
+from faultscene.risk import score_release_risk
 
 
 def generate_markdown_report(
@@ -14,7 +14,7 @@ def generate_markdown_report(
     summary = replay_payload.get("summary", {})
 
     lines = [
-        "# IncidentOS Incident Report",
+        "# FaultScene Incident Report",
         "",
         "## Summary",
         "",
