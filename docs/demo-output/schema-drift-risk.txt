@@ -1,0 +1,10 @@
+.venv/bin/python -m incidentos.cli risk
+{
+  "risk": "HIGH",
+  "should_block_release": true,
+  "reasons": [
+    "Root cause: Inventory response schema changed and omitted reservation_id",
+    "Root service: inventory",
+    "Scenario: schema_drift"
+  ]
+}

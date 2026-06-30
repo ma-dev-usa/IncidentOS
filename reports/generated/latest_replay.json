@@ -12,7 +12,7 @@
       "expected_status": 200,
       "actual_status": 502,
       "ok": false,
-      "latency_ms": 46.44,
+      "latency_ms": 33.59,
       "response_json": {
         "detail": {
           "service": "gateway",
@@ -41,7 +41,7 @@
       "expected_status": 200,
       "actual_status": 502,
       "ok": false,
-      "latency_ms": 17.44,
+      "latency_ms": 17.14,
       "response_json": {
         "detail": {
           "service": "gateway",
@@ -70,7 +70,7 @@
       "expected_status": 200,
       "actual_status": 502,
       "ok": false,
-      "latency_ms": 16.67,
+      "latency_ms": 16.98,
       "response_json": {
         "detail": {
           "service": "gateway",
@@ -99,7 +99,7 @@
       "expected_status": 200,
       "actual_status": 502,
       "ok": false,
-      "latency_ms": 18.5,
+      "latency_ms": 16.08,
       "response_json": {
         "detail": {
           "service": "gateway",
@@ -128,7 +128,7 @@
       "expected_status": 200,
       "actual_status": 502,
       "ok": false,
-      "latency_ms": 16.05,
+      "latency_ms": 17.32,
       "response_json": {
         "detail": {
           "service": "gateway",

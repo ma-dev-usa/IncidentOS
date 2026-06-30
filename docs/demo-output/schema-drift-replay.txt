@@ -1,0 +1,7 @@
+.venv/bin/python -m incidentos.cli replay --url "http://localhost:8000/checkout" --traffic "traffic/checkout_sample.jsonl"
+{
+  "total_requests": 5,
+  "failed_requests": 5,
+  "success_rate": 0.0
+}
+Replay written to reports/generated/latest_replay.json
