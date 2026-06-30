@@ -60,7 +60,7 @@ def classify_replay(replay_payload: dict[str, Any]) -> IncidentClassification:
 
     if "schema drift" in text or "missing_field" in text or "reservation_id" in text:
         return IncidentClassification(
-            scenario="schema-drift",
+            scenario="schema_drift",
             root_service="inventory",
             root_cause="Inventory response schema changed and omitted reservation_id",
             severity="HIGH",
@@ -80,7 +80,7 @@ def classify_replay(replay_payload: dict[str, Any]) -> IncidentClassification:
 
     if "payment" in text and ("processor error" in text or "500" in text):
         return IncidentClassification(
-            scenario="payment-500",
+            scenario="payment_failure",
             root_service="payments",
             root_cause="Payments dependency returned HTTP 500 during checkout",
             severity="HIGH",
@@ -100,7 +100,7 @@ def classify_replay(replay_payload: dict[str, Any]) -> IncidentClassification:
 
     if "inventory" in text and ("unavailable" in text or "503" in text):
         return IncidentClassification(
-            scenario="inventory-down",
+            scenario="inventory_down",
             root_service="inventory",
             root_cause="Inventory dependency unavailable during checkout",
             severity="HIGH",
@@ -120,7 +120,7 @@ def classify_replay(replay_payload: dict[str, Any]) -> IncidentClassification:
 
     if "timed out" in text or "timeout" in text or 504 in failed_statuses or max_latency > 2000:
         return IncidentClassification(
-            scenario="inventory-timeout",
+            scenario="inventory_timeout",
             root_service="inventory",
             root_cause="Inventory dependency exceeded timeout budget",
             severity="HIGH",
@@ -140,7 +140,7 @@ def classify_replay(replay_payload: dict[str, Any]) -> IncidentClassification:
 
     if "missing required configuration" in text or "missing_config" in text:
         return IncidentClassification(
-            scenario="bad-config",
+            scenario="bad_config",
             root_service="orders",
             root_cause="Orders service missing required runtime configuration",
             severity="HIGH",

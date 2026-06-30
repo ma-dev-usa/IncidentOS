@@ -2,6 +2,8 @@
 
 PYTHON=.venv/bin/python
 PYTEST=.venv/bin/pytest
+CHECKOUT_URL=http://localhost:8000/checkout
+TRAFFIC_FILE=traffic/checkout_sample.jsonl
 
 up:
 	docker compose up --build -d
@@ -13,14 +15,14 @@ logs:
 	docker compose logs -f
 
 test:
-	$(PYTEST) -q
+	$(PYTEST)
 
 scenario:
 	docker compose down
 	SCENARIO=$(SCENARIO) docker compose up --build -d
 
 replay:
-	$(PYTHON) -m incidentos.cli replay --url http://localhost:8000/checkout --traffic traffic/checkout_sample.jsonl
+	$(PYTHON) -m incidentos.cli replay --url "$(CHECKOUT_URL)" --traffic "$(TRAFFIC_FILE)"
 
 classify:
 	$(PYTHON) -m incidentos.cli classify
@@ -32,10 +34,9 @@ risk:
 	$(PYTHON) -m incidentos.cli risk
 
 risk-block:
-	$(PYTHON) -m incidentos.cli risk --fail-on HIGH
+	$(PYTHON) -m incidentos.cli risk --block
 
-flow:
-	$(PYTHON) -m incidentos.cli flow --url http://localhost:8000/checkout --traffic traffic/checkout_sample.jsonl
+flow: replay classify report risk
 
 clean:
-	rm -rf reports/generated .pytest_cache
+	rm -rf reports/generated/*

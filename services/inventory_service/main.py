@@ -15,10 +15,10 @@ def health():
 def reserve_inventory():
     scenario = os.getenv("SCENARIO", "normal")
 
-    if scenario == "inventory-timeout":
+    if scenario == "inventory_timeout":
         time.sleep(5)
 
-    if scenario == "inventory-down":
+    if scenario == "inventory_down":
         raise HTTPException(
             status_code=503,
             detail={
@@ -27,7 +27,7 @@ def reserve_inventory():
             },
         )
 
-    if scenario == "schema-drift":
+    if scenario == "schema_drift":
         return {
             "service": "inventory",
             "reserved": True,

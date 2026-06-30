@@ -18,7 +18,7 @@ def health():
 async def create_order():
     scenario = os.getenv("SCENARIO", "normal")
 
-    if scenario == "bad-config":
+    if scenario == "bad_config":
         raise HTTPException(
             status_code=500,
             detail={

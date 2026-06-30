@@ -1,22 +1,22 @@
 {
-  "scenario": "payment-500",
-  "root_service": "payments",
-  "root_cause": "Payments dependency returned HTTP 500 during checkout",
+  "scenario": "schema_drift",
+  "root_service": "inventory",
+  "root_cause": "Inventory response schema changed and omitted reservation_id",
   "severity": "HIGH",
-  "confidence": 0.9,
+  "confidence": 0.92,
   "affected_services": [
     "gateway",
     "orders",
-    "payments"
+    "inventory"
   ],
   "evidence": [
-    "Orders service reported failed_dependency=payments.",
-    "Payments service returned a server-side failure.",
-    "Failed statuses observed: [500, 500, 500, 500, 500]"
+    "Orders service detected missing reservation_id from inventory response.",
+    "Gateway returned an upstream dependency failure.",
+    "Failed statuses observed: [502, 502, 502, 502, 502]"
   ],
   "remediation": [
-    "Inspect payments service logs for processor errors.",
-    "Verify payment provider credentials and recent deploys.",
-    "Block release until payment dependency is stable."
+    "Restore reservation_id field or update the orders service contract.",
+    "Add OpenAPI contract checks for the inventory reserve endpoint.",
+    "Block release until dependent service schema is compatible."
   ]
 }

@@ -2,40 +2,34 @@
 
 ## Summary
 
-- **Scenario:** `payment-500`
-- **Root service:** `payments`
-- **Root cause:** Payments dependency returned HTTP 500 during checkout
-- **Severity:** `HIGH`
-- **Confidence:** `90%`
-- **Release risk:** `HIGH`
-- **Block release:** `True`
+- **Scenario:** `normal`
+- **Root service:** `none`
+- **Root cause:** No incident detected
+- **Severity:** `LOW`
+- **Confidence:** `95%`
+- **Release risk:** `LOW`
+- **Block release:** `False`
 
 ## Replay Results
 
 - **Total requests:** 5
-- **Failed requests:** 5
-- **Success rate:** 0.0
+- **Failed requests:** 0
+- **Success rate:** 1.0
 
 ## Affected Services
 
-- `gateway`
-- `orders`
-- `payments`
+- None
 
 ## Evidence
 
-- Orders service reported failed_dependency=payments.
-- Payments service returned a server-side failure.
-- Failed statuses observed: [500, 500, 500, 500, 500]
+- 5 requests replayed successfully
+- Success rate was 1.0
 
 ## Recommended Remediation
 
-- Inspect payments service logs for processor errors.
-- Verify payment provider credentials and recent deploys.
-- Block release until payment dependency is stable.
+- No remediation required.
+- Continue monitoring checkout path health.
 
 ## Release Gate Reasons
 
-- Root cause: Payments dependency returned HTTP 500 during checkout
-- Root service: payments
-- Scenario: payment-500
+- Replay did not detect a release-blocking incident.

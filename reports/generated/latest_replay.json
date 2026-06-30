@@ -10,19 +10,24 @@
       "method": "POST",
       "url": "http://localhost:8000/checkout",
       "expected_status": 200,
-      "actual_status": 500,
+      "actual_status": 502,
       "ok": false,
-      "latency_ms": 46.28,
+      "latency_ms": 46.44,
       "response_json": {
         "detail": {
           "service": "gateway",
           "upstream_service": "orders",
-          "upstream_status": 500,
+          "upstream_status": 502,
           "upstream_response": {
             "detail": {
               "service": "orders",
-              "error": "missing required configuration value",
-              "missing_config": "PAYMENTS_URL"
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
             }
           }
         }
@@ -34,19 +39,24 @@
       "method": "POST",
       "url": "http://localhost:8000/checkout",
       "expected_status": 200,
-      "actual_status": 500,
+      "actual_status": 502,
       "ok": false,
-      "latency_ms": 8.03,
+      "latency_ms": 17.44,
       "response_json": {
         "detail": {
           "service": "gateway",
           "upstream_service": "orders",
-          "upstream_status": 500,
+          "upstream_status": 502,
           "upstream_response": {
             "detail": {
               "service": "orders",
-              "error": "missing required configuration value",
-              "missing_config": "PAYMENTS_URL"
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
             }
           }
         }
@@ -58,19 +68,24 @@
       "method": "POST",
       "url": "http://localhost:8000/checkout",
       "expected_status": 200,
-      "actual_status": 500,
+      "actual_status": 502,
       "ok": false,
-      "latency_ms": 9.84,
+      "latency_ms": 16.67,
       "response_json": {
         "detail": {
           "service": "gateway",
           "upstream_service": "orders",
-          "upstream_status": 500,
+          "upstream_status": 502,
           "upstream_response": {
             "detail": {
               "service": "orders",
-              "error": "missing required configuration value",
-              "missing_config": "PAYMENTS_URL"
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
             }
           }
         }
@@ -82,19 +97,24 @@
       "method": "POST",
       "url": "http://localhost:8000/checkout",
       "expected_status": 200,
-      "actual_status": 500,
+      "actual_status": 502,
       "ok": false,
-      "latency_ms": 8.24,
+      "latency_ms": 18.5,
       "response_json": {
         "detail": {
           "service": "gateway",
           "upstream_service": "orders",
-          "upstream_status": 500,
+          "upstream_status": 502,
           "upstream_response": {
             "detail": {
               "service": "orders",
-              "error": "missing required configuration value",
-              "missing_config": "PAYMENTS_URL"
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
             }
           }
         }
@@ -106,19 +126,24 @@
       "method": "POST",
       "url": "http://localhost:8000/checkout",
       "expected_status": 200,
-      "actual_status": 500,
+      "actual_status": 502,
       "ok": false,
-      "latency_ms": 7.3,
+      "latency_ms": 16.05,
       "response_json": {
         "detail": {
           "service": "gateway",
           "upstream_service": "orders",
-          "upstream_status": 500,
+          "upstream_status": 502,
           "upstream_response": {
             "detail": {
               "service": "orders",
-              "error": "missing required configuration value",
-              "missing_config": "PAYMENTS_URL"
+              "failed_dependency": "inventory",
+              "error": "schema drift detected",
+              "missing_field": "reservation_id",
+              "dependency_response": {
+                "service": "inventory",
+                "reserved": true
+              }
             }
           }
         }

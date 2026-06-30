@@ -14,7 +14,7 @@ def health():
 def charge_payment():
     scenario = os.getenv("SCENARIO", "normal")
 
-    if scenario == "payment-500":
+    if scenario == "payment_failure":
         raise HTTPException(
             status_code=500,
             detail={
